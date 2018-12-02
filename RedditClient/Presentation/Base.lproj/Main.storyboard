@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="noW-6J-DLs">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Reddit Detail View Controller-->
+        <scene sceneID="xOq-5i-isG">
+            <objects>
+                <viewController id="w5f-G2-TXA" customClass="RedditDetailViewController" customModule="RedditClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6LU-8Z-gJu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="BTc-sn-fEg"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Fjo-U5-8St"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pir-Dh-2Sw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1876" y="-409.7451274362819"/>
+        </scene>
+        <!--Reddit Posts-->
+        <scene sceneID="nmy-b2-2Z6">
+            <objects>
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="ND5-Lq-pMD" customClass="RedditTableViewController" customModule="RedditClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DfU-fF-QgX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="m6R-T3-fko">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m6R-T3-fko" id="mMu-wI-BCe">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ND5-Lq-pMD" id="mAn-k4-pqZ"/>
+                            <outlet property="delegate" destination="ND5-Lq-pMD" id="YCg-f9-Dg9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Reddit Posts" id="fxX-vf-Aj4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3r4-1n-sph" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1887" y="-1072"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="exn-VZ-2y1">
+            <objects>
+                <navigationController id="hWN-ZP-hya" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0QP-Tr-pNd">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ND5-Lq-pMD" kind="relationship" relationship="rootViewController" id="hNK-pn-x01"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="25i-i2-sV5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="937" y="-1072"/>
+        </scene>
+        <!--Reddit Split View Controller-->
+        <scene sceneID="2Rh-uw-Ii9">
+            <objects>
+                <splitViewController id="noW-6J-DLs" customClass="RedditSplitViewController" customModule="RedditClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="hWN-ZP-hya" kind="relationship" relationship="masterViewController" id="dIA-ol-4be"/>
+                        <segue destination="6t8-up-u82" kind="relationship" relationship="detailViewController" id="43c-SY-usg"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u0P-FR-t3L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-13" y="-740"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="baH-T5-Erg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6t8-up-u82" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yl2-Mn-6t5">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="w5f-G2-TXA" kind="relationship" relationship="rootViewController" id="Qco-0l-MQs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fRp-57-m1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="936.79999999999995" y="-409.7451274362819"/>
+        </scene>
+    </scenes>
+</document>
