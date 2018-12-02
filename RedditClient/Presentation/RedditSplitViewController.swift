@@ -37,12 +37,9 @@ extension RedditSplitViewController: RedditTableVCDelegate {
         vc.startLoading()
     }
     
-    func endLoading(_ post: RedditPost) {
+    func endLoading() {
         vc.endLoading()
         vc.view.backgroundColor = UIColor.white
-        vc.setUp(post)
-        
-        self.showDetailViewController(vc, sender: self)
     }
     
     func cellSelected(post: RedditPost) {

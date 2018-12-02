@@ -11,7 +11,7 @@ import UIKit
 protocol RedditTableVCDelegate {
     func cellSelected(post: RedditPost)
     func startLoading()
-    func endLoading(_ post: RedditPost)
+    func endLoading()
 }
 
 class RedditTableViewController: UITableViewController {
@@ -94,8 +94,8 @@ extension RedditTableViewController: RedditTablePresenterDelegate {
     
     func onFetchingEnd() {
         tableView.reloadData()
-        if let firstPost = presenter.firstPost() {
-            delegate.endLoading(firstPost)
+        if let _ = presenter.firstPost() {
+            delegate.endLoading()
         } else {
             presenter.fetchPosts()
         }

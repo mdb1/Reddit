@@ -43,11 +43,17 @@ class RedditDetailViewController: UIViewController {
     func setUp(_ post: RedditPost) {
         self.post = post
         
+        loadingView.isHidden = true
+        
         // Determines that the post has been read
         UserDefaults.standard.set(true, forKey: post.data.id)
 
         titleLabel.text = post.data.title
         usernameLabel.text = post.data.author_fullname
+        
+        downloadImageButton.setTitle("Download image", for: .normal)
+        downloadImageButton.isEnabled = false
+        imageView.image = nil
         
         if let data = post.data.preview, let images = data.images, let mainSource = images[0].source {
             let finalString = mainSource.url.replacingOccurrences(of: "amp;", with: "")
@@ -56,6 +62,8 @@ class RedditDetailViewController: UIViewController {
                     DispatchQueue.main.async {
                         if let i = i {
                             self.imageView.image = i
+                            self.downloadImageButton.isHidden = false
+                            self.downloadImageButton.isEnabled = true
                         } else {
                             self.imageView.image = UIImage(named: "noImage")
                             self.downloadImageButton.isHidden = true

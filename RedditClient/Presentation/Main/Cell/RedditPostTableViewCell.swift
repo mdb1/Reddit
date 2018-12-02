@@ -65,4 +65,8 @@ class RedditPostTableViewCell: UITableViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        postImageView.image = nil
+    }
+    
 }
