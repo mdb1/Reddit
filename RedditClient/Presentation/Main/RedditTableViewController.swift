@@ -10,6 +10,8 @@ import UIKit
 
 protocol RedditTableVCDelegate {
     func cellSelected(post: RedditPost)
+    func startLoading()
+    func endLoading(_ post: RedditPost)
 }
 
 class RedditTableViewController: UITableViewController {
@@ -21,9 +23,25 @@ class RedditTableViewController: UITableViewController {
         super.viewDidLoad()
 
         clearsSelectionOnViewWillAppear = false
+        
+        let item = UIBarButtonItem(title: "Delete all", style: .done, target: self, action: #selector(deleteAll))
+        item.tintColor = .orange
+        self.navigationItem.rightBarButtonItem = item
 
         presenter.registerCells(tableView)
         presenter.fetchPosts()
+    }
+    
+    @objc private func deleteAll() {
+        let cellsCount = presenter.deleteAll() - 1
+        var indexPaths = [IndexPath]()
+        if cellsCount >= 0 {
+            for i in 0...cellsCount {
+                indexPaths.append(IndexPath(row: i, section: 0))
+            }
+            tableView.deleteRows(at: indexPaths, with: .automatic)
+            tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
@@ -51,6 +69,15 @@ class RedditTableViewController: UITableViewController {
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return presenter.footer()
+    }
+    
+    @IBAction func refreshAction(_ sender: UIRefreshControl) {
+        presenter.fetchPosts()
+        sender.endRefreshing()
+    }
 }
 
 extension RedditTableViewController: RedditTablePresenterDelegate {
@@ -62,11 +89,16 @@ extension RedditTableViewController: RedditTablePresenterDelegate {
     }
     
     func onFetchingStart() {
-        
+        delegate.startLoading()
     }
     
     func onFetchingEnd() {
         tableView.reloadData()
+        if let firstPost = presenter.firstPost() {
+            delegate.endLoading(firstPost)
+        } else {
+            presenter.fetchPosts()
+        }
     }
     
     func displayError(type: Error, showCancel: Bool = false, retryBlock: @escaping () -> Void) {

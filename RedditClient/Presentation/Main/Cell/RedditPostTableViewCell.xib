@@ -89,7 +89,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="number of comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6m-ts-kW0">
-                        <rect key="frame" x="178" y="115.5" width="138" height="20"/>
+                        <rect key="frame" x="167" y="115.5" width="138" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="1" green="0.5874779929577465" blue="0.23679577464788731" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -102,7 +102,7 @@
                     <constraint firstItem="aSd-Kv-dFu" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8gT-Tt-ehv"/>
                     <constraint firstAttribute="bottom" secondItem="NhN-Xi-bu0" secondAttribute="bottom" constant="4" id="B7B-XC-yOL"/>
                     <constraint firstItem="NhN-Xi-bu0" firstAttribute="centerY" secondItem="AEm-gb-2go" secondAttribute="centerY" id="EAT-Zl-RWx"/>
-                    <constraint firstAttribute="trailing" secondItem="G6m-ts-kW0" secondAttribute="trailing" constant="4" id="ECZ-Jd-sBa"/>
+                    <constraint firstAttribute="trailing" secondItem="G6m-ts-kW0" secondAttribute="trailing" constant="15" id="ECZ-Jd-sBa"/>
                     <constraint firstItem="AEm-gb-2go" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="FCG-cP-REH"/>
                     <constraint firstItem="CbT-Gz-iIq" firstAttribute="top" secondItem="aSd-Kv-dFu" secondAttribute="top" id="GCN-sC-MGQ"/>
                     <constraint firstAttribute="trailing" secondItem="6EF-St-Wzo" secondAttribute="trailing" constant="4" id="HDT-OZ-2Wk"/>

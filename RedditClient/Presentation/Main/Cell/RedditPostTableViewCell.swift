@@ -42,7 +42,9 @@ class RedditPostTableViewCell: UITableViewCell {
         updateStatus()
         
         authorLabel.text = post.data.author_fullname
-        //hoursAgoLabel.text = post.data. TODO
+        
+        let timeInHours = Int((Date().timeIntervalSince1970 - post.data.created_utc) / 60 / 60)
+        hoursAgoLabel.text = "\(timeInHours) hours ago"
         
         postTitleLabel.text = post.data.title
         commentsLabel.text = "\(post.data.num_comments) comments"

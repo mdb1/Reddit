@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RedditClient/Service/RedditService.swift"
-            timestampString = "565440282.321129"
+            timestampString = "565444278.055941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "doRequest(_:body:queryParams:extraHeaders:andReturn:completion:)"
             landmarkType = "7">
          </BreakpointContent>

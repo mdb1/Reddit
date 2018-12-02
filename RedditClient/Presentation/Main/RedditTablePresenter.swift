@@ -86,6 +86,10 @@ class RedditTablePresenter {
         return posts.count
     }
     
+    func footer() -> UIView? {
+        return UIView()
+    }
+    
     func postAt(_ indexPath: IndexPath) -> RedditPost? {
         if posts.count >= indexPath.row {
             return posts[indexPath.row]
@@ -111,4 +115,16 @@ class RedditTablePresenter {
         posts.remove(at: indexPath.row)
     }
     
+    func deleteAll() -> Int {
+        let cellsToDelete = posts.count
+        posts.removeAll()
+        return cellsToDelete
+    }
+    
+    func firstPost() -> RedditPost? {
+        if posts.count > 0 {
+            return posts[0]
+        }
+        return nil
+    }
 }

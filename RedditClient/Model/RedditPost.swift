@@ -15,7 +15,7 @@ struct RedditDataPost: Codable {
     let id: String
     let num_comments: Int
     let preview: PreviewModel?
-    let clicked: Bool
+    let created_utc: Double
     
 }
 

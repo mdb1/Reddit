@@ -9,21 +9,33 @@
 import UIKit
 
 class RedditSplitViewController: UISplitViewController, UISplitViewControllerDelegate {
+    
+    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RedditDetailViewController") as! RedditDetailViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let _ = self.vc.view
     }
 
 }
 
 extension RedditSplitViewController: RedditTableVCDelegate {
-    func cellSelected(post: RedditPost) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RedditDetailViewController") as! RedditDetailViewController
+    
+    func startLoading() {
+        vc.startLoading()
+    }
+    
+    func endLoading(_ post: RedditPost) {
+        vc.endLoading()
         vc.view.backgroundColor = UIColor.white
         vc.setUp(post)
         
-        // Determines that the post has been read
-        UserDefaults.standard.set(true, forKey: post.data.id)
+        self.showDetailViewController(vc, sender: self)
+    }
+    
+    func cellSelected(post: RedditPost) {
+        vc.view.backgroundColor = UIColor.white
+        vc.setUp(post)
         
         self.showDetailViewController(vc, sender: self)
     }
