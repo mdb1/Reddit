@@ -13,14 +13,30 @@
         <!--Reddit Detail View Controller-->
         <scene sceneID="xOq-5i-isG">
             <objects>
-                <viewController id="w5f-G2-TXA" customClass="RedditDetailViewController" customModule="RedditClient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RedditDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="w5f-G2-TXA" customClass="RedditDetailViewController" customModule="RedditClient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6LU-8Z-gJu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lG-43-DOU">
+                                <rect key="frame" x="20" y="84" width="335" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BTc-sn-fEg" firstAttribute="trailing" secondItem="1lG-43-DOU" secondAttribute="trailing" constant="20" id="2n8-Wj-l5e"/>
+                            <constraint firstItem="1lG-43-DOU" firstAttribute="top" secondItem="BTc-sn-fEg" secondAttribute="top" constant="20" id="wGv-4T-Sqd"/>
+                            <constraint firstItem="1lG-43-DOU" firstAttribute="leading" secondItem="BTc-sn-fEg" secondAttribute="leading" constant="20" id="wgf-CB-ESW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="BTc-sn-fEg"/>
                     </view>
                     <navigationItem key="navigationItem" id="Fjo-U5-8St"/>
+                    <connections>
+                        <outlet property="titleLabel" destination="1lG-43-DOU" id="Waw-nD-5sp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pir-Dh-2Sw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

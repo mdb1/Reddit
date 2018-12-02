@@ -15,7 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        guard let splitViewController = window?.rootViewController as? RedditSplitViewController,
+            let leftNavController = splitViewController.viewControllers.first as? UINavigationController,
+            let masterViewController = leftNavController.topViewController as? RedditTableViewController
+            else { fatalError() }
+        
+        let redditDetailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RedditDetailViewController") as! RedditDetailViewController
+        
+        masterViewController.delegate = splitViewController
+        let _ = redditDetailViewController.view
+        
         return true
     }
 

@@ -8,13 +8,19 @@
 
 import UIKit
 
-struct RedditPost: Codable {
-
+struct RedditDataPost: Codable {
+    
     let author_fullname: String
     let title: String
     let id: String
     let num_comments: Int
     let preview: PreviewModel?
+    
+}
+
+struct RedditPost: Codable {
+
+    let data: RedditDataPost
     
 }
 
@@ -32,5 +38,13 @@ struct SourceModel: Codable {
     let url: String
     let width: Int
     let height: Int
+}
+
+struct RedditResponse: Codable {
+    let data: DataResponse
+}
+
+struct DataResponse: Codable {
+    let children: [RedditPost]
 }
 

@@ -43,13 +43,11 @@ class RedditService {
         return decoder
     }()
     
-    func get<T: Codable>(_ path: String,
-                         queryParams: [String: Any]? = [:],
+    func get<T: Codable>(queryParams: [String: Any]? = [:],
                          extraHeaders: [String: String]? = nil,
                          andReturn model: T.Type,
                          completion: @escaping ((Result<T>) -> Void)) {
         doRequest(.get,
-                  path,
                   queryParams: queryParams,
                   extraHeaders: extraHeaders,
                   andReturn: model,
@@ -73,14 +71,13 @@ class RedditService {
     }
     
     private func doRequest<T: Codable>(_ method: HTTPMethod,
-                                       _ path: String,
                                        body: Data? = nil,
                                        queryParams: [String: Any]? = [:],
                                        extraHeaders: [String: String]? = nil,
                                        andReturn model: T.Type,
                                        completion: @escaping ((Result<T>) -> Void)) {
         
-        guard let url = URL(string: "\(self.baseURL)/\(path)") else {
+        guard let url = URL(string: "\(self.baseURL)") else {
             fatalError("URL NOT VALID")
         }
         
@@ -132,15 +129,6 @@ class RedditService {
     func parseData<T: Codable> (data: Data?, model: T.Type) -> T? {
         guard let data = data else {
             return nil
-        }
-        
-        if String(data: data, encoding: String.Encoding.utf8) == "" {
-            //This is the hack for empty responses
-            let json = [String: String]()
-            guard let jsonData = try? JSONEncoder().encode(json) else {
-                fatalError()
-            }
-            return try? decoder.decode(T.self, from: jsonData)
         }
         
         return try? decoder.decode(T.self, from: data)

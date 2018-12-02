@@ -8,23 +8,20 @@
 
 import UIKit
 
-class RedditSplitViewController: UISplitViewController {
+class RedditSplitViewController: UISplitViewController, UISplitViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension RedditSplitViewController: RedditTableVCDelegate {
+    func cellSelected(post: RedditPost) {        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RedditDetailViewController") as! RedditDetailViewController
+        vc.view.backgroundColor = UIColor.white
+        vc.titleLabel.text = post.data.title
+        
+        self.showDetailViewController(vc, sender: self)
     }
-    */
-
 }
