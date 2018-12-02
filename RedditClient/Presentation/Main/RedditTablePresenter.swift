@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol RedditTablePresenterDelegate {
+protocol RedditTablePresenterDelegate: RedditPostCellDelegate {
     func displayError(type: Error, showCancel: Bool, retryBlock: @escaping () -> Void)
     func onFetchingStart()
     func onFetchingEnd()
@@ -50,10 +50,32 @@ class RedditTablePresenter {
         }
     }
     
+    func registerCells(_ tableView: UITableView) {
+        tableView.register(UINib(nibName: "RedditPostTableViewCell", bundle: nil), forCellReuseIdentifier: "RedditPostTableViewCell")
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = posts[indexPath.row].data.title
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RedditPostTableViewCell", for: indexPath) as? RedditPostTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.setUp(posts[indexPath.row], indexPath: indexPath, delegate: delegate)
+        
+        if let data = posts[indexPath.row].data.preview, let images = data.images, let mainSource = images[0].source {
+            let finalString = mainSource.url.replacingOccurrences(of: "amp;", with: "")
+            if let url = URL(string: finalString) {
+                service.downloadImage(from: url) { (i) in
+                    DispatchQueue.main.async {
+                        cell.updateImage(i)
+                    }
+                }
+            }
+        }
+        
         return cell
+    }
+    
+    func heightForRow() -> CGFloat {
+        return 140
     }
     
     func numberOfSections() -> Int {
@@ -83,6 +105,10 @@ class RedditTablePresenter {
                 self.delegate.displayError(type: UserError.codableError, showCancel: false, retryBlock: retryBlock)
             }
         }
+    }
+    
+    func removePost(_ indexPath: IndexPath) {
+        posts.remove(at: indexPath.row)
     }
     
 }

@@ -20,15 +20,17 @@ class RedditTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        presenter.fetchPosts()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        presenter.registerCells(tableView)
+        presenter.fetchPosts()
     }
 
     // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return presenter.heightForRow()
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return presenter.numberOfSections()
@@ -39,18 +41,25 @@ class RedditTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         return presenter.tableView(tableView, cellForRowAt: indexPath)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let post = presenter.postAt(indexPath) {
+            tableView.deselectRow(at: indexPath, animated: true)
             delegate.cellSelected(post: post)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
 }
 
 extension RedditTableViewController: RedditTablePresenterDelegate {
+    
+    func dismissPost(indexPath: IndexPath) {
+        presenter.removePost(indexPath)
+        tableView.deleteRows(at: [indexPath], with: .left)
+        tableView.reloadData()
+    }
     
     func onFetchingStart() {
         

@@ -10,23 +10,35 @@ import UIKit
 
 class RedditDetailViewController: UIViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var usernameLabel: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
+    
+    private var service = RedditService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setUp(_ post: RedditPost) {
+        titleLabel.text = post.data.title
+        usernameLabel.text = post.data.author_fullname
+        
+        if let data = post.data.preview, let images = data.images, let mainSource = images[0].source {
+            let finalString = mainSource.url.replacingOccurrences(of: "amp;", with: "")
+            if let url = URL(string: finalString) {
+                service.downloadImage(from: url) { (i) in
+                    DispatchQueue.main.async {
+                        if let i = i {
+                            self.imageView.image = i
+                        } else {
+                            self.imageView.image = UIImage(named: "noImage")
+                        }
+                    }
+                }
+            }
+        }
     }
-    */
 
 }

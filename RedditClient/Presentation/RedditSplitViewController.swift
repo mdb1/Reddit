@@ -17,10 +17,13 @@ class RedditSplitViewController: UISplitViewController, UISplitViewControllerDel
 }
 
 extension RedditSplitViewController: RedditTableVCDelegate {
-    func cellSelected(post: RedditPost) {        
+    func cellSelected(post: RedditPost) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RedditDetailViewController") as! RedditDetailViewController
         vc.view.backgroundColor = UIColor.white
-        vc.titleLabel.text = post.data.title
+        vc.setUp(post)
+        
+        // Determines that the post has been read
+        UserDefaults.standard.set(true, forKey: post.data.id)
         
         self.showDetailViewController(vc, sender: self)
     }

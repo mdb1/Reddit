@@ -19,23 +19,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lG-43-DOU">
-                                <rect key="frame" x="20" y="84" width="335" height="20.5"/>
+                                <rect key="frame" x="20" y="340.5" width="335" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyo-v6-QG6">
+                                <rect key="frame" x="16" y="80" width="343" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qng-8q-ede">
+                                <rect key="frame" x="87.5" y="120.5" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="9tq-1k-3lP"/>
+                                    <constraint firstAttribute="width" constant="200" id="nep-11-HCO"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="BTc-sn-fEg" firstAttribute="trailing" secondItem="1lG-43-DOU" secondAttribute="trailing" constant="20" id="2n8-Wj-l5e"/>
-                            <constraint firstItem="1lG-43-DOU" firstAttribute="top" secondItem="BTc-sn-fEg" secondAttribute="top" constant="20" id="wGv-4T-Sqd"/>
+                            <constraint firstItem="BTc-sn-fEg" firstAttribute="trailing" secondItem="Hyo-v6-QG6" secondAttribute="trailing" constant="16" id="KLT-rN-nDh"/>
+                            <constraint firstItem="qng-8q-ede" firstAttribute="centerX" secondItem="6LU-8Z-gJu" secondAttribute="centerX" id="hta-6g-VXs"/>
+                            <constraint firstItem="Hyo-v6-QG6" firstAttribute="top" secondItem="BTc-sn-fEg" secondAttribute="top" constant="16" id="kDw-k2-acn"/>
+                            <constraint firstItem="qng-8q-ede" firstAttribute="top" secondItem="Hyo-v6-QG6" secondAttribute="bottom" constant="20" id="oFv-sc-LkH"/>
+                            <constraint firstItem="1lG-43-DOU" firstAttribute="top" secondItem="qng-8q-ede" secondAttribute="bottom" constant="20" id="tnn-12-v36"/>
+                            <constraint firstItem="Hyo-v6-QG6" firstAttribute="leading" secondItem="BTc-sn-fEg" secondAttribute="leading" constant="16" id="ude-hu-ESt"/>
                             <constraint firstItem="1lG-43-DOU" firstAttribute="leading" secondItem="BTc-sn-fEg" secondAttribute="leading" constant="20" id="wgf-CB-ESW"/>
+                            <constraint firstItem="1lG-43-DOU" firstAttribute="top" secondItem="Hyo-v6-QG6" secondAttribute="bottom" priority="500" constant="20" id="ySz-sQ-cgW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BTc-sn-fEg"/>
                     </view>
                     <navigationItem key="navigationItem" id="Fjo-U5-8St"/>
                     <connections>
+                        <outlet property="imageView" destination="qng-8q-ede" id="aaS-Uw-Fmd"/>
                         <outlet property="titleLabel" destination="1lG-43-DOU" id="Waw-nD-5sp"/>
+                        <outlet property="usernameLabel" destination="Hyo-v6-QG6" id="owR-Pp-buR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pir-Dh-2Sw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -47,9 +68,10 @@
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="ND5-Lq-pMD" customClass="RedditTableViewController" customModule="RedditClient" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DfU-fF-QgX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="m6R-T3-fko">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -75,9 +97,17 @@
         <scene sceneID="exn-VZ-2y1">
             <objects>
                 <navigationController id="hWN-ZP-hya" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0QP-Tr-pNd">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="0QP-Tr-pNd">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="ND5-Lq-pMD" kind="relationship" relationship="rootViewController" id="hNK-pn-x01"/>
